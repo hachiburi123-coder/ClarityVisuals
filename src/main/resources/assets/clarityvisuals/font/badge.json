@@ -1,0 +1,15 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "clarityvisuals:gui/clarity_badge.png",
+      "ascent": 8,
+      "height": 10,
+      "chars": ["\uE930"]
+    },
+    {
+      "type": "space",
+      "advances": { " ": 4 }
+    }
+  ]
+}

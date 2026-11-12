@@ -1,0 +1,18 @@
+{
+    "vertex": "clarityvisuals:core/sky_fog",
+    "fragment": "clarityvisuals:core/sky_fog",
+    "samplers": [],
+    "uniforms": [
+        { "name": "ModelViewMat", "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+        { "name": "ProjMat",      "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+        { "name": "time",       "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "resolution", "type": "float", "count": 2, "values": [ 1920.0, 1080.0 ] },
+        { "name": "fogColor",   "type": "float", "count": 4, "values": [ 0.72, 0.22, 0.76, 1.0 ] },
+        { "name": "intensity",  "type": "float", "count": 1, "values": [ 0.5 ] },
+        { "name": "fogMode",    "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "camRight",   "type": "float", "count": 4, "values": [ 1.0, 0.0, 0.0, 0.0 ] },
+        { "name": "camUp",      "type": "float", "count": 4, "values": [ 0.0, 1.0, 0.0, 0.0 ] },
+        { "name": "camForward", "type": "float", "count": 4, "values": [ 0.0, 0.0, -1.0, 0.0 ] },
+        { "name": "fovScale",   "type": "float", "count": 1, "values": [ 1.0 ] }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "vertex": "clarityvisuals:core/sakura_sky",
+    "fragment": "clarityvisuals:core/sakura_sky",
+    "samplers": [],
+    "uniforms": [
+        { "name": "ModelViewMat", "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+        { "name": "ProjMat",      "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+        { "name": "time",         "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "resolution",   "type": "float", "count": 2, "values": [ 1920.0, 1080.0 ] },
+        { "name": "camRight",     "type": "float", "count": 4, "values": [ 1.0, 0.0, 0.0, 0.0 ] },
+        { "name": "camUp",        "type": "float", "count": 4, "values": [ 0.0, 1.0, 0.0, 0.0 ] },
+        { "name": "camForward",   "type": "float", "count": 4, "values": [ 0.0, 0.0, -1.0, 0.0 ] },
+        { "name": "sunDirection", "type": "float", "count": 4, "values": [ -0.55, 0.20, -0.81, 0.0 ] },
+        { "name": "intensity",    "type": "float", "count": 1, "values": [ 1.0 ] },
+        { "name": "sun",          "type": "float", "count": 1, "values": [ 1.0 ] },
+        { "name": "clouds",       "type": "float", "count": 1, "values": [ 1.0 ] },
+        { "name": "topColor",     "type": "float", "count": 4, "values": [ 0.33, 0.43, 0.78, 1.0 ] },
+        { "name": "horizonColor", "type": "float", "count": 4, "values": [ 1.0, 0.70, 0.60, 1.0 ] },
+        { "name": "sunColor",     "type": "float", "count": 4, "values": [ 1.0, 0.82, 0.55, 1.0 ] }
+    ]
+}

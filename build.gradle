@@ -1,0 +1,101 @@
+plugins {
+    id 'fabric-loom' version '1.15.5'
+    id 'idea'
+}
+
+group = 'ru.method'
+version = '2.0'
+
+base {
+    archivesName = 'ClarityVisuals'
+}
+
+repositories {
+    mavenCentral()
+    maven { name = 'Fabric'; url = 'https://maven.fabricmc.net/' }
+    maven { name = 'Meteor'; url = 'https://maven.meteordev.org/releases' }
+    maven { name = 'Skija'; url = 'https://packages.jetbrains.team/maven/p/skija/maven' }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.21.4"
+    mappings loom.layered {}
+    modImplementation "net.fabricmc:fabric-loader:0.16.14"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.119.4+1.21.4"
+
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    modImplementation 'com.github.hypfvieh:dbus-java-core:4.3.1'
+    modImplementation 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.7.3'
+
+    modImplementation project.fileTree('src/main/resources/META-INF/jars') {
+        include '*.jar'
+    }
+}
+
+configurations {
+    bundleLibs {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+dependencies {
+    bundleLibs project.fileTree('src/main/resources/META-INF/jars') {
+        include '*.jar'
+    }
+}
+
+// Production jar must be self-contained: unpack all bundled libs into it,
+// otherwise the game crashes with NoClassDefFoundError (orbit, figura, ...).
+tasks.named('jar', Jar) {
+    from({
+        configurations.bundleLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }) {
+        exclude(
+            'META-INF/*.SF',
+            'META-INF/*.RSA',
+            'META-INF/*.DSA',
+            'META-INF/versions/**',
+            'module-info.class'
+        )
+    }
+    exclude('META-INF/jars/**')
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+idea {
+    module {
+        downloadSources = false
+        downloadJavadoc = false
+    }
+}
+
+// Production jar is always named ClarityVisuals.jar and copied into Libs/.
+remapJar {
+    archiveFileName = 'ClarityVisuals.jar'
+}
+
+tasks.register('copyJarToLibs', Copy) {
+    group = 'build'
+    description = 'Copies the built client jar into Libs/ as ClarityVisuals.jar'
+    dependsOn tasks.remapJar
+    from tasks.remapJar.archiveFile
+    into layout.projectDirectory.dir('Libs')
+    rename { 'ClarityVisuals.jar' }
+}
+
+tasks.named('build') {
+    finalizedBy 'copyJarToLibs'
+}
